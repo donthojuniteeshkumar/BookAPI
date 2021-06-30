@@ -16,15 +16,15 @@
 
 // Books
 // We need an API
-// to get all books!
-// to get specific books!
-// to get list of books based on category!
-// to get list of books based on languages!
+// to get all books 👍
+// to get specific books 👍
+// to get list of books based on category 👍
+// to get list of books based on languages 👍
 
 // Authors
 // We need an API
-// to get all authors
-// to get specific authors
+// to get all authors 👍
+// to get specific authors 👍
 // to get list of authors based on books
 
 // Publications
