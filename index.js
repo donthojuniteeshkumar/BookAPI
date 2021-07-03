@@ -115,6 +115,17 @@ booky.get("/author/book/:isbn", (req, res) => {
     return res.json({ authors: getSpecificAuthor });
 });
 
+/*
+Route              /publications
+Description        Get all publications 
+Acceess            PUBLIC
+Parameter          isbn
+Methods            GET
+*/
+booky.get("/publications", (req, res) => {
+    return res.json({ publications: database.publication });
+});
+
 
 
 const port=9000
