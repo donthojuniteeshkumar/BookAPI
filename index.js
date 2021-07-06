@@ -6,10 +6,13 @@ const database = require("./database");
 // Initialization
 const booky = express();
 
+// Configuration
+booky.use(express.json());
+
 /*
 Route              /
 Description        Get all books
-Acccess            PUBLIC
+Access             PUBLIC
 Parameter          NONE
 Methods            GET
 */
@@ -21,7 +24,7 @@ booky.get("/", (req, res) => {
 /*
 Route              /is
 Description        Get Specific books based on ISBN
-Acccess            PUBLIC
+Access             PUBLIC
 Parameter          isbn
 Methods            GET
 */
@@ -44,7 +47,7 @@ booky.get("/is/:isbn", (req, res) => {
 /*
 Route              /c
 Description        Get Specific books based on category
-Acceess            PUBLIC
+Access             PUBLIC
 Parameter          Catregory
 Methods            GET
 */
@@ -65,7 +68,7 @@ booky.get("/c/:category", (req, res) => {
 /*
 Route              /l
 Description        Get Specific books based on language
-Acccess            PUBLIC
+Access             PUBLIC
 Parameter          language
 Methods            GET
 */
@@ -86,7 +89,7 @@ booky.get("/l/:language",function(req,res){
 /*
 Route              /author
 Description        Get all authors
-Acccess            PUBLIC
+Access             PUBLIC
 Parameter          NONE
 Methods            GET
 */
@@ -118,7 +121,7 @@ booky.get("/author/book/:isbn", (req, res) => {
 /*
 Route              /publications
 Description        Get all publications 
-Acceess            PUBLIC
+Access             PUBLIC
 Parameter          isbn
 Methods            GET
 */
@@ -126,8 +129,59 @@ booky.get("/publications", (req, res) => {
     return res.json({ publications: database.publication });
 });
 
+/*
+Route              /book/new
+Description        add new book 
+Access             PUBLIC
+Parameter          NONE
+Methods            POST
+*/
+booky.post("/book/add", (req, res) => {
+    const { newBook }= req.body;
+    database.books.push(newBook);
+    return res.json({ books: database.books });
 
+});
 
-const port=9000
+/*
+Route              /author/add
+Description        add new author
+Access             PUBLIC
+Parameter          NONE
+Methods            POST
+*/
+booky.post("/author/add", (req, res) => {
+    const { newAuthor }= req.body;
+    database.author.push(newAuthor);
+    return res.json({ author: database.author });
+})
+
+/*
+Route              /book/update/title
+Description        Update book title
+Access             PUBLIC
+Parameter          isbn
+Methods            PUT
+*/
+booky.put("/book/update/title/:isbn", (req, res) => {
+    database.books.forEach((book) => {
+       if(book.ISBN === req.params.isbn) {
+           book.title = req.body.newBookTitle;
+           return;
+       }
+    });
+
+return res.json({ books: database.books });
+});
+
+/*
+Route              /book/update/author
+Description        Update/add new author for a Book
+Access             PUBLIC
+Parameter          isbn
+Methods            PUT
+*/
+
+const port=1234
 
 booky.listen(port, () => console.log(`Hey server is running on 👍 ->  ${port}`));
