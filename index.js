@@ -181,7 +181,25 @@ Access             PUBLIC
 Parameter          isbn
 Methods            PUT
 */
+booky.put("/book/update/author/:isbn/:authorID", (req, res) => {
+    //Update book Database
 
-const port=1234
+    database.books.forEach((book) => {
+        if (book.ISBN === req.params.isbn) { 
+         return book.author.push(parseInt(req.params.authorID));
+        }
+    });
+
+    // update author database
+    database.author.forEach((author) => {
+        if (author.id === (parseInt(req.params.authorID)))
+         return author.books.push(req.params.isbn);
+    });
+
+    return res.json({ books: database.books, author: database.author });
+});
+
+
+const port=3000
 
 booky.listen(port, () => console.log(`Hey server is running on 👍 ->  ${port}`));
