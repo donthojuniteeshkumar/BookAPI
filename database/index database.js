@@ -5,7 +5,7 @@ const books = [
       pubDate: "2021-07-07",
       language: ["en", "tel", "hin"],
       numPage: 250,
-      author: [1, 2],
+      author: [ 1, 2 ],
       publications: [1],
       category: ["tech", "Programmming", "education", "thriller"],
     }

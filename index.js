@@ -1,7 +1,7 @@
 const express = require("express");
 
 // Database
-const database = require("./database");
+const database = require("./database/index database");
 
 // Initialization
 const booky = express();
@@ -181,18 +181,18 @@ Access             PUBLIC
 Parameter          isbn
 Methods            PUT
 */
-booky.put("/book/update/author/:isbn/:authorID", (req, res) => {
+booky.put("/book/update/author/:isbn/:authorId", (req, res) => {
     //Update book Database
 
     database.books.forEach((book) => {
-        if (book.ISBN === req.params.isbn) { 
-         return book.author.push(parseInt(req.params.authorID));
+        if(book.ISBN === req.params.isbn) { 
+         return book.author.push(parseInt(req.params.authorId));
         }
     });
 
     // update author database
     database.author.forEach((author) => {
-        if (author.id === (parseInt(req.params.authorID)))
+        if(author.id === parseInt(req.params.authorId)) 
          return author.books.push(req.params.isbn);
     });
 

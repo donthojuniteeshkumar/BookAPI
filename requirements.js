@@ -29,7 +29,7 @@
 
 // PUT
 // Update book title 👍
-// Update/add new author for a Book
+// Update/add new author for a Book 👍❗
 
 // DELETE
 // delete a book
@@ -48,7 +48,7 @@
 // Add new author 👍
 
 // PUT
-// Update Author name
+// Update Author name using its id ❗
 
 // DELETE
 // Delete an author
@@ -59,16 +59,19 @@
 
 // GET
 // to get all publications 👍
-// to get specific publication
-// to get list of publication based on book
+// to get specific publication ❗
+// to get list of publication based on book  ❗
 
 // POST
-// Add new publications
+// Add new publications ❗
 
 // PUT
-// Update the publication name
+// Update the publication name using its id ❗
 // update/add books to publication
 
 // DELETE
 // Delete a publication
 // Delete a book from publication
+
+
+//How the server serves the request
