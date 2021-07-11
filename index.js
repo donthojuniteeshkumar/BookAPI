@@ -1,4 +1,5 @@
 require("dotenv").config();
+
 //Frame work
 const express = require("express");
 const mongoose = require("mongoose");
@@ -325,8 +326,3 @@ booky.delete("/publication/delete/book/:isbn/:pubID", (req, res) => {
 
 const port=3000
 booky.listen(port, () => console.log(`Hey server is running on 👍 ->  ${port}`));
-
-// Talk to mongodb in which mongodb understands => *****
-// Talk to us inthe way we understand => Javascript
-
-// mongoose

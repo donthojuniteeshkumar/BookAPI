@@ -31,7 +31,7 @@ const author = [
     {
         id: 2,
         name: "Rajesh",
-        books: ["12345Book"]
+        books: ["12345Book"],
     },
 ];
 
