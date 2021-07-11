@@ -11,11 +11,9 @@
 // Publications
 // id, name, books[]
 
-
 // What are all the APIs that we need....
-
+//----------------------------------------------------------------------------------------------------
 // Books
-
 // We need an API
 
 // GET
@@ -32,11 +30,11 @@
 // Update/add new author for a Book 👍❗
 
 // DELETE
-// delete a book
-// delete an author
+// delete a book 👍
+// delete an author from a book 👍 
 
+//----------------------------------------------------------------------------------------------------
 // Authors
-
 // We need an API
 
 // GET
@@ -51,10 +49,9 @@
 // Update Author name using its id ❗
 
 // DELETE
-// Delete an author
-
+// Delete an author ❗
+//----------------------------------------------------------------------------------------------------
 // Publications
-
 // We need an API
 
 // GET
@@ -67,11 +64,11 @@
 
 // PUT
 // Update the publication name using its id ❗
-// update/add new book to publication
+// update/add new book to publication 👍
 
 // DELETE
-// Delete a publication
-// Delete a book from publication
+// Delete a publication ❗
+// Delete a book from publication 👍
 
-
+//----------------------------------------------------------------------------------------------------
 //How the server serves the request

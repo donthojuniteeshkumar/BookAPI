@@ -224,5 +224,88 @@ booky.put("/publication/update/book/:isbn", (req, res) => {
 return res.json({books: database.books, publication: database.publication, message: "Successfully Updated publicatoion"});
 });
 
+/*
+Route              /book/delete
+Description        Delete a Book
+Access             PUBLIC
+Parameter          isbn
+Methods            DELETE
+*/
+booky.delete("/book/delete/:isbn", (req, res) => {
+    const updateedBookDatabase = database.books.filter(
+        (book) => book.ISBN !== req.params.isbn
+    );
+
+    database.books = updateedBookDatabase;
+    return res.json({ books: database.books });
+});
+
+/*
+Route              /book/delete/author
+Description        delete an author from a Book
+Access             PUBLIC
+Parameter          isbn
+Methods            DELETE
+*/
+booky.delete("/book/delete/author/:isbn/:authorID", (req, res) => {
+    
+    // update the book database
+    database.books.forEach((book) => {
+        if(book.ISBN === req.params.isbn){
+            const newAuthorList = book.author.filter(
+                (author) => author !== parseInt(req.params.authorID)
+            );
+            book.author = newAuthorList;
+            return;
+        }
+    });
+    //update the author database
+    database.author.forEach((author) => {
+        if(author.id === parseInt(req.params.authorID)) {
+            const newBooksList = author.books.filter(
+            (book) => book !== req.params.isbn
+        );
+
+        author.books = newBooksList;
+        return;
+        }  
+    });
+
+    return res.json({
+        message: "author was deleted successfully😜",
+        book: database.books,
+        author: database.author,
+    });
+});
+
+/*
+Route              /publication/delete/book
+Description        delete a book from publication
+Access             PUBLIC
+Parameter          isbn, publication id
+Methods            DELETE
+*/
+booky.delete("/publication/delete/book/:isbn/:pubID", (req, res) => {
+    database.publication.forEach((publication) => {
+        if(publication.id === parseInt(req.params.pubID)){
+            const newBooksList = publication.books.filter(
+             (book) => book !== req.params.isbn
+            );
+
+            publication.books = newBooksList;
+            return;
+        }
+    });
+
+   // update book database
+   database.books.forEach((book) => {
+       if(book.ISBN === req.params.isbn) {
+        book.publication = 0; // no publication avaliable
+        return;
+       } 
+     });
+     return res.json({ books: database.books, publication: database.publication})
+});
+
 const port=3000
 booky.listen(port, () => console.log(`Hey server is running on 👍 ->  ${port}`));
