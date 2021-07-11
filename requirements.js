@@ -67,7 +67,7 @@
 
 // PUT
 // Update the publication name using its id ❗
-// update/add books to publication
+// update/add new book to publication
 
 // DELETE
 // Delete a publication

@@ -1,7 +1,7 @@
 const express = require("express");
 
 // Database
-const database = require("./database/index database");
+const database = require("./database/index database");            
 
 // Initialization
 const booky = express();
@@ -199,7 +199,30 @@ booky.put("/book/update/author/:isbn/:authorId", (req, res) => {
     return res.json({ books: database.books, author: database.author });
 });
 
+/*
+Route              /publication/update/book
+Description        Update/add new Book to publication
+Access             PUBLIC
+Parameter          isbn
+Methods            PUT
+*/
+
+booky.put("/publication/update/book/:isbn", (req, res) => {
+ // Update the publication database
+    database.publication.forEach((publication) => {
+        if (publication.id === req.body.pubId) {
+            return publication.books.push(req.params.isbn);
+        }
+    });
+ // update the book database
+    database.books.forEach((book) => {
+        if (book.isbn === req.params.isbn) {
+            book.publication = req.body.pubId;
+            return;
+        }
+    });
+return res.json({books: database.books, publication: database.publication, message: "Successfully Updated publicatoion"});
+});
 
 const port=3000
-
 booky.listen(port, () => console.log(`Hey server is running on 👍 ->  ${port}`));
