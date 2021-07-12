@@ -17,13 +17,13 @@
 // We need an API
 
 // GET
-// to get all books 👍
-// to get specific books 👍
-// to get list of books based on category 👍
+// to get all books 👍✔
+// to get specific books 👍✔
+// to get list of books based on category 👍✔
 // to get list of books based on languages 👍
 
 // POST
-// Add new book 👍
+// Add new book 👍✔
 
 // PUT
 // Update book title 👍
@@ -38,12 +38,12 @@
 // We need an API
 
 // GET
-// to get all authors 👍
+// to get all authors 👍✔
 // to get specific authors 👍
 // to get list of authors based on books 👍
 
 // POST
-// Add new author 👍
+// Add new author 👍✔
 
 // PUT
 // Update Author name using its id ❗

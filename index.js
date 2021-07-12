@@ -115,8 +115,9 @@ Access             PUBLIC
 Parameter          NONE
 Methods            GET
 */
-booky.get("/author", (req, res) => {
-    return res.json({ authors: database.author });
+booky.get("/author", async (req, res) => {
+    const getAllAuthors = await AuthorModel.find();
+    return res.json({ authors: getAllAuthors });
 });
 
  /*
@@ -179,7 +180,7 @@ booky.post("/author/new", (req, res) => {
     AuthorModel.create(newAuthor);
 
     return res.json({ message: "author was added!" });
-})
+});
 
 /*
 Route              /book/update/title
