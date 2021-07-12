@@ -5,11 +5,11 @@ const BookSchema = mongoose.Schema({
     ISBN: String,
     title: String,
     pubDate: String,
-    language: String,
+    language: [String],
     numPage: Number,
-    author: Number,
-    publication: Number,
-    category: String,
+    author: [Number],
+    publication: [Number],
+    category: [String],
 });
 
 // Creating a Book model
