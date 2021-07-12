@@ -183,21 +183,25 @@ booky.post("/author/new", (req, res) => {
 });
 
 /*
-Route              /book/update/title
+Route              /book/update
 Description        Update book title
 Access             PUBLIC
 Parameter          isbn
 Methods            PUT
 */
-booky.put("/book/update/title/:isbn", (req, res) => {
-    database.books.forEach((book) => {
-       if(book.ISBN === req.params.isbn) {
-           book.title = req.body.newBookTitle;
-           return;
-       }
-    });
-
-return res.json({ books: database.books });
+booky.put("/book/update/:isbn", async (req, res) => {
+    const updatedBook = await BookModel.findOneAndUpdate(
+        {
+           ISBN: req.params.isbn,
+        },
+        {
+           title: req.body.newbookTitle,
+        },
+        {
+           new: true,
+        }
+    );
+    return res.json({ books: updatedBook });
 });
 
 /*
