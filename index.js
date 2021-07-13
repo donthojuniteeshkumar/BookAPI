@@ -21,7 +21,7 @@ booky.use(express.json());
 // Establish database connection
 mongoose
  .connect(
-    process.env.MONGO_URL,
+    process.env.Mongo_Url,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
