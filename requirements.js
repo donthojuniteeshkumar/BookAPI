@@ -26,7 +26,7 @@
 // Add new book 👍✔
 
 // PUT
-// Update book title 👍
+// Update book title 👍✔
 // Update/add new author for a Book 👍❗
 
 // DELETE

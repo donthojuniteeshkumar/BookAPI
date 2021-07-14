@@ -198,7 +198,7 @@ booky.put("/book/update/:isbn", async (req, res) => {
            title: req.body.newbookTitle,
         },
         {
-           new: true,
+           new: true, // to get updated data
         }
     );
     return res.json({ books: updatedBook });
@@ -214,11 +214,11 @@ Methods            PUT
 booky.put("/book/update/author/:isbn/:authorId", (req, res) => {
     //Update book Database
 
-    database.books.forEach((book) => {
-        if(book.ISBN === req.params.isbn) { 
-         return book.author.push(parseInt(req.params.authorId));
-        }
-    });
+    // database.books.forEach((book) => {
+    //     if(book.ISBN === req.params.isbn) { 
+    //      return book.author.push(parseInt(req.params.authorId));
+    //     }
+    // });
 
     // update author database
     database.author.forEach((author) => {
