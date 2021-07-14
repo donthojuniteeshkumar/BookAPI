@@ -205,14 +205,28 @@ booky.put("/book/update/:isbn", async (req, res) => {
 });
 
 /*
-Route              /book/update/author
+Route              /book/author/update
 Description        Update/add new author for a Book
 Access             PUBLIC
 Parameter          isbn
 Methods            PUT
 */
-booky.put("/book/update/author/:isbn/:authorId", (req, res) => {
+booky.put("/book/author/update/:isbn", async (req, res) => {
     //Update book Database
+
+    const updatedBook = await BookModel.findOneAndUpdate(
+        {
+            ISBN: req.params.isbn,
+        },
+        {
+          $addToSet: {
+              author: req.body.newAuthor,
+          },
+        },
+        {
+            new: true,
+        }
+    );
 
     // database.books.forEach((book) => {
     //     if(book.ISBN === req.params.isbn) { 
@@ -221,12 +235,27 @@ booky.put("/book/update/author/:isbn/:authorId", (req, res) => {
     // });
 
     // update author database
-    database.author.forEach((author) => {
-        if(author.id === parseInt(req.params.authorId)) 
-         return author.books.push(req.params.isbn);
-    });
 
-    return res.json({ books: database.books, author: database.author });
+    const updatedAuthor = await AuthorModel.findOneAndUpdate(
+        {
+            id: req.body.newAuthor,
+        },
+        {
+            $push: {
+                books: req.params.isbn,
+            },
+        },
+        {
+            new: true,
+        }
+    );
+
+    // database.author.forEach((author) => {
+    //     if(author.id === parseInt(req.params.authorId)) 
+    //      return author.books.push(req.params.isbn);
+    // });
+
+    return res.json({ books: updatedBook, author: updatedAuthor, message: "New author was added👍" });
 });
 
 /*
@@ -262,6 +291,9 @@ Parameter          isbn
 Methods            DELETE
 */
 booky.delete("/book/delete/:isbn", (req, res) => {
+
+    
+    
     const updateedBookDatabase = database.books.filter(
         (book) => book.ISBN !== req.params.isbn
     );
