@@ -30,7 +30,7 @@
 // Update/add new author for a Book 👍❗✔
 
 // DELETE
-// delete a book 👍
+// delete a book 👍✔
 // delete an author from a book 👍 
 
 //----------------------------------------------------------------------------------------------------

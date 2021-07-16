@@ -18,7 +18,7 @@ let books = [
         author: [ 1, 2 ],
         publication: [2],
         category: ["tech", "Programmming", "education", "thriller"],
-      },
+    },
 ]
 
 const author = [
@@ -26,7 +26,7 @@ const author = [
     
         id: 1,
         name: "Niteesh",
-        books: ["12345Book", "123456789Secret"],
+        books: ["12345Book", "123456Book"],
     },
     {
         id: 2,

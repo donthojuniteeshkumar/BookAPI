@@ -5,7 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 // Database
-const database = require("./database/database");
+const database = require("./database");
 
 // Models
 const BookModel = require("./database/book");
@@ -290,16 +290,18 @@ Access             PUBLIC
 Parameter          isbn
 Methods            DELETE
 */
-booky.delete("/book/delete/:isbn", (req, res) => {
+booky.delete("/book/delete/:isbn", async (req, res) => {
 
+    const updatedBookDatabase = await BookModel.findOneAndDelete({
+        ISBN: req.params.isbn,
+    });
     
-    
-    const updateedBookDatabase = database.books.filter(
-        (book) => book.ISBN !== req.params.isbn
-    );
+    // const updatedBookDatabase = database.books.filter(
+    //     (book) => book.ISBN !== req.params.isbn
+    // );
 
-    database.books = updateedBookDatabase;
-    return res.json({ books: database.books });
+    // database.books = updatedBookDatabase;
+    return res.json({ books: updatedBookDatabase });
 });
 
 /*
@@ -309,29 +311,48 @@ Access             PUBLIC
 Parameter          isbn
 Methods            DELETE
 */
-booky.delete("/book/delete/author/:isbn/:authorID", (req, res) => {
-    
+booky.delete("/book/delete/author/:isbn/:authorID", async (req, res) => {
     // update the book database
-    database.books.forEach((book) => {
-        if(book.ISBN === req.params.isbn){
-            const newAuthorList = book.author.filter(
-                (author) => author !== parseInt(req.params.authorID)
-            );
-            book.author = newAuthorList;
-            return;
-        }
-    });
-    //update the author database
-    database.author.forEach((author) => {
-        if(author.id === parseInt(req.params.authorID)) {
-            const newBooksList = author.books.filter(
-            (book) => book !== req.params.isbn
-        );
 
-        author.books = newBooksList;
-        return;
-        }  
+    const updatedBook = await BookModel.findOneAndUpdate(
+    {
+        ISBN: req.params.isbn,
+    },
+    {
+        $pull: {
+            author: parseInt(req.params.authorID),
+        }
+    },
+    {
+        new: true
+    }
+    );
+
+
+
+    // database.books.forEach((book) => {
+    //     if(book.ISBN === req.params.isbn){
+    //         const newAuthorList = book.author.filter(
+    //             (author) => author !== parseInt(req.params.authorID)
+    //         );
+    //         book.author = newAuthorList;
+    //         return;
+    //     }
+    // });
+    //update the author database
+    const updatedAuthor = await AuthorModel.findOneAndUpdate({
+
     });
+    // database.author.forEach((author) => {
+    //     if(author.id === parseInt(req.params.authorID)) {
+    //         const newBooksList = author.books.filter(
+    //         (book) => book !== req.params.isbn
+    //     );
+
+    //     author.books = newBooksList;
+    //     return;
+    //     }  
+    // });
 
     return res.json({
         message: "author was deleted successfully😜",
