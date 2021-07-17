@@ -10,7 +10,7 @@ const database = require("./database");
 // Models
 const BookModel = require("./database/book");
 const AuthorModel = require("./database/author");
-const PublicationModel = require("./database//publication");
+const PublicationModel = require("./database/publication");
 
 // Initialization
 const booky = express();
@@ -159,7 +159,7 @@ Access             PUBLIC
 Parameter          NONE
 Methods            POST
 */
-booky.post("/book/new", async (req, res) => {
+booky.post("/book/new", (req, res) => {
     const { newBook }= req.body;
     BookModel.create(newBook); 
 
