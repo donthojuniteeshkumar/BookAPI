@@ -340,9 +340,17 @@ booky.delete("/book/delete/author/:isbn/:authorID", async (req, res) => {
     //     }
     // });
     //update the author database
-    const updatedAuthor = await AuthorModel.findOneAndUpdate({
-
-    });
+    const updatedAuthor = await AuthorModel.findOneAndUpdate(
+    {
+       id: parseInt(req.params.authorID),
+    },
+    {
+        $pull: {
+            books: req.params.isbn,
+        },
+    },
+    { new: true }
+    );
     // database.author.forEach((author) => {
     //     if(author.id === parseInt(req.params.authorID)) {
     //         const newBooksList = author.books.filter(
@@ -356,8 +364,8 @@ booky.delete("/book/delete/author/:isbn/:authorID", async (req, res) => {
 
     return res.json({
         message: "author was deleted successfully😜",
-        book: database.books,
-        author: database.author,
+        book: updatedBook,
+        author: updatedAuthor,
     });
 });
 
