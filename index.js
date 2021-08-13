@@ -19,8 +19,7 @@ const booky = express();
 booky.use(express.json());
 
 // Establish database connection
-mongoose
- .connect(
+mongoose.connect(
     process.env.Mongo_Url,
     {
         useNewUrlParser: true,
@@ -28,7 +27,7 @@ mongoose
         useFindAndModify: false,
         useCreateIndex: true
     }
- )
+)
 .then(() => console.log("connection established!!!!")); 
 
 /*
