@@ -19,15 +19,13 @@ const booky = express();
 booky.use(express.json());
 
 // Establish database connection
-mongoose.connect(
-    process.env.Mongo_Url,
-    {
+mongoose
+    .connect(process.env.MONGO_URL, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
-        useCreateIndex: true
-    }
-)
+        useCreateIndex: true,
+    })
 .then(() => console.log("connection established!!!!")); 
 
 /*
