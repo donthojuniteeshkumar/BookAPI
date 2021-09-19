@@ -1,7 +1,8 @@
-//Prefix : /book
-
 // Intializing Express Router
 const Router = require("express").Router();
+
+// Database Models
+const BookModel = require("../../database/book");
 
 /*
 Route              /
