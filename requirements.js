@@ -70,5 +70,7 @@
 // Delete a publication ❗
 // Delete a book from publication 👍
 
+//Add mongoose validation to All the models ❗
+
 //----------------------------------------------------------------------------------------------------
 //How the server serves the request
